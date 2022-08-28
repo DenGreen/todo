@@ -1,0 +1,33 @@
+.editing-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0,0,0,0.6);
+}
+
+.editing-form {
+    position: absolute;
+    top: 40%;
+    right: calc(50% - 625px/2);
+    width: 700px;
+
+    display: flex;
+}
+
+.editing-form__input {
+    width: 80%;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    border-radius: 10px;
+    
+    background-color: rgb(238,238,238);
+}
+
+.editing-form__btn-box {
+    height: auto;
+}
