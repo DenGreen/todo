@@ -5,7 +5,9 @@ import EditingForm from "../../Components/EditingForm/EditingForm";
 import TodoItem from "../../Components/TodoItem/TodoItem";
 import {ICollectionTask} from "../../models";
 
-function store() {
+// основной компонент Todo 
+
+function store() { // достаем массив с задачами в localStorage. Если localStorage пуст, то возвращаем пустой массив
   if (localStorage.getItem("CollectionTask")) {
     const collectionTaskStore: ICollectionTask[] = JSON.parse(
       localStorage.getItem("CollectionTask")!
@@ -18,15 +20,15 @@ function store() {
 }
 
 function Todo() {
-  const [valueInput, setValueInput] = useState<string>("");
+  const [valueInput, setValueInput] = useState<string>(""); // значение input 
   const [collectionTask, setCollectionTask] = useState<ICollectionTask[]>(
     store()
-  );
-  const [activeEditingForm, setActiveEditingForm] = useState<boolean>(false);
-  const [editElement, setEditElement] = useState();
+  ); // массив задачь 
+  const [activeEditingForm, setActiveEditingForm] = useState<boolean>(false); // активирует и дезактивирует форму редактирования задач
+  const [editElement, setEditElement] = useState(); // элемент li который редактируем 
 
   useEffect(() => {
-    localStorage.setItem("CollectionTask", JSON.stringify(collectionTask));
+    localStorage.setItem("CollectionTask", JSON.stringify(collectionTask)); // при изменении массива задач, сохраняем его в localStorage
   }, [collectionTask]);
 
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +40,7 @@ function Todo() {
     setValueInput("");
   };
 
-  const addingNewTask = () => {
+  const addingNewTask = () => { // добавляем новую задачу 
     setCollectionTask([
       ...collectionTask,
       { text: valueInput, check: false, id: Math.random() + "" },

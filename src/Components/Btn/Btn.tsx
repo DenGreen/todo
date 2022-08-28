@@ -1,10 +1,10 @@
 import "./Btn.css";
-
+// компонент кнопка
 interface IProps {
-  call: (event: any) => void;
-  text: string;
-  styleBtn: string;
-  typeBtn: "button" | "submit";
+  call: (event: any) => void; // функция обратного вызова
+  text: string; // текст в кнопке 
+  styleBtn: string; // className 
+  typeBtn: "button" | "submit"; 
 }
 
 function Btn({ call, text, styleBtn, typeBtn }: IProps) {

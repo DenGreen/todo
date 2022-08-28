@@ -4,10 +4,10 @@ import { ICollectionTask } from "../../models";
 import Btn from "../Btn/Btn";
 
 interface IProps {
-  collectionTask: ICollectionTask[];
-  callCollectionTask: (value: ICollectionTask[]) => void;
-  callActiveEditingForm: (value: boolean) => void;
-  callEditElement: (value: Element) => void;
+  collectionTask: ICollectionTask[]; // collectionTask - массив всех задач
+  callCollectionTask: (value: ICollectionTask[]) => void; // callback меняющий значение collectionTask из компонента Todo
+  callActiveEditingForm: (value: boolean) => void; // callback меняющий значение activeEditingForm из компонента Todo 
+  callEditElement: (value: Element) => void; // добавляем редактируемый элемент в editElement из компонента Todo 
 }
 
 function TodoItem({
@@ -16,20 +16,20 @@ function TodoItem({
   callActiveEditingForm,
   callEditElement,
 }: IProps) {
-  const editTask = (event: React.ChangeEvent<HTMLButtonElement>) => {
+  const editTask = (event: React.ChangeEvent<HTMLButtonElement>) => { // передаем редактируемый элемент в editElement и активируем форму редактирования EditingForm
     const element = event.target.parentNode?.parentNode as HTMLElement;
     callEditElement(element);
     callActiveEditingForm(true);
   };
 
-  const deleteTask = (event: React.ChangeEvent<HTMLButtonElement>) => {
+  const deleteTask = (event: React.ChangeEvent<HTMLButtonElement>) => { // удаляет задачу из collectionTask
     const element = event.target.parentNode?.parentNode as HTMLElement;
     const id = element?.id;
 
     callCollectionTask(collectionTask.filter((value) => value.id !== id));
   };
 
-  const w = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const editElementCheck = (event: React.ChangeEvent<HTMLInputElement>) => { // изменяет свойство check у элемента в массиве collectionTask 
     const element = event.target.parentNode?.parentNode as HTMLElement;
     const id = element?.id;
 
@@ -52,7 +52,7 @@ function TodoItem({
                 className="todo__chec"
                 type="checkbox"
                 defaultChecked={value.check}
-                onChange={w}
+                onChange={editElementCheck}
               />
               <span className="todo__text">{value.text}</span>
             </div>

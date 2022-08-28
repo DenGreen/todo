@@ -2,12 +2,12 @@ import { useState } from "react";
 import Btn from "../Btn/Btn";
 import "./EditingForm.css";
 import { ICollectionTask } from "../../models";
-
+// форма редактирования 
 interface IProps {
-  element: any;
-  collectionTask: ICollectionTask[];
-  callActiveEditingForm: (value: boolean) => void;
-  callEditTextElement: (value: ICollectionTask[]) => void;
+  element: any; // элемент li который редактируется
+  collectionTask: ICollectionTask[]; // collectionTask - массив всех задач
+  callActiveEditingForm: (value: boolean) => void; // callback меняющий значение activeEditingForm из компонента Todo 
+  callEditTextElement: (value: ICollectionTask[]) => void; // callback меняющий значение collectionTask из компонента Todo
 }
 
 function EditingForm({
@@ -16,12 +16,12 @@ function EditingForm({
   callActiveEditingForm,
   callEditTextElement,
 }: IProps) {
-  const text = element.querySelector(".todo__text").innerText;
-  const id = element.id;
+  const text = element.querySelector(".todo__text").innerText; // получаем текст из тега span редактируемого элемента (element)
+  const id = element.id; // получаем id тега li редактируемого элемента (element)
 
   const [valueInput, setValueInput] = useState<string>(text);
 
-  const editTask = () => {
+  const editTask = () => { // редактируем нужный элемент массива и обновляем collectionTask
     collectionTask.forEach((value, index) => {
       if (value.id === id) {
         collectionTask[index].text = valueInput;
@@ -41,7 +41,7 @@ function EditingForm({
     setValueInput("");
   };
 
-  const closeChange = () => {
+  const closeChange = () => { // изменяем значение activeEditingForm для того что бы закрыть форму редактирования 
     callActiveEditingForm(false);
   };
 
