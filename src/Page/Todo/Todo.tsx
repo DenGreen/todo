@@ -6,7 +6,7 @@ import TodoItem from "../../Components/TodoItem/TodoItem";
 import {ICollectionTask} from "../../models";
 
 function store() {
-  if (localStorage.getItem("CollectionTask") !== undefined) {
+  if (localStorage.getItem("CollectionTask")) {
     const collectionTaskStore: ICollectionTask[] = JSON.parse(
       localStorage.getItem("CollectionTask")!
     );
